@@ -1,0 +1,9 @@
+{
+    "preset": "psr12",
+    "exclude": [
+        "vendor",
+        "resources",
+        "database",
+        "app/Enums"
+    ]
+}
