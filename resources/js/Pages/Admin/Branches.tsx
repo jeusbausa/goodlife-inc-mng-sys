@@ -46,7 +46,7 @@ const BranchesPagination = () => {
                 </TableTr>
             </TableThead>
             <TableTbody>
-                {branches.data.map((branch, index) => (
+                {branches.data.map((branch: any, index: any) => (
                     <TableTr key={`${branch.id}.${index}`}>
                         <TableTd>{branch.name}</TableTd>
                     </TableTr>
