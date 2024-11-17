@@ -14,7 +14,12 @@ type ResultMessageProps = {
     successDescription?: string | React.ReactNode;
 };
 
-export function ResultMessage({ successDescription, successTitle, serverError, result }: ResultMessageProps) {
+export function ResultMessage({
+    successDescription,
+    successTitle,
+    serverError,
+    result,
+}: ResultMessageProps) {
     const hasError = serverError || (!isUndefined(result) && !result?.success);
     const isSuccessful = result?.success;
     const hasNoErrorMessage = !result?.success && isNull(result?.message);

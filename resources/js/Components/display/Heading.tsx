@@ -7,7 +7,12 @@ type HeadingProps = {
     centered?: boolean;
 } & Omit<TitleProps, "children" | "title">;
 
-export function Heading({ title, description, centered = false, ...props }: HeadingProps) {
+export function Heading({
+    title,
+    description,
+    centered = false,
+    ...props
+}: HeadingProps) {
     return (
         <Box py="xl" ta={centered ? "center" : "initial"}>
             <Title size="2rem" fw={500} {...props}>

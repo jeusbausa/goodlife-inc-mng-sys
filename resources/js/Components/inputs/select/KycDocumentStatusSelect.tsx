@@ -6,7 +6,10 @@ export function KycDocumentStatusSelect({ ...props }: SelectProps) {
     return (
         <Select
             {...props}
-            data={Object.entries(KycDocumentStatuses).map(([, value]) => ({ label: toWords(value), value }))}
+            data={Object.entries(KycDocumentStatuses).map(([, value]) => ({
+                label: toWords(value),
+                value,
+            }))}
         />
     );
 }

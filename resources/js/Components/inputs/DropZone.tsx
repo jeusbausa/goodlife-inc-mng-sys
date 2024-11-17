@@ -1,7 +1,23 @@
 "use client";
 
-import { Card, BackgroundImage, ActionIcon, Alert, List, Flex, Group, Image, Text } from "@mantine/core";
-import { FileRejection, Dropzone, MIME_TYPES, DropzoneIdle, FileWithPath } from "@mantine/dropzone";
+import {
+    Card,
+    BackgroundImage,
+    ActionIcon,
+    Alert,
+    List,
+    Flex,
+    Group,
+    Image,
+    Text,
+} from "@mantine/core";
+import {
+    FileRejection,
+    Dropzone,
+    MIME_TYPES,
+    DropzoneIdle,
+    FileWithPath,
+} from "@mantine/dropzone";
 import { isEmpty } from "lodash";
 import { modals } from "@mantine/modals";
 import { Plus, X } from "@phosphor-icons/react";
@@ -22,7 +38,13 @@ const CardContainer = ({ children }: { children: React.ReactNode }) => (
     </Card>
 );
 
-export function DropZone({ title, maxFiles = 1, values, sizePerFile, onChange }: DropzoneProps) {
+export function DropZone({
+    title,
+    maxFiles = 1,
+    values,
+    sizePerFile,
+    onChange,
+}: DropzoneProps) {
     const MAX_SIZE = maxFiles * sizePerFile ** 2;
     const [files, setFiles] = useState<FileWithPath[]>(values);
     const [errors, setErrors] = useState<FileRejection[]>([]);
@@ -73,7 +95,11 @@ export function DropZone({ title, maxFiles = 1, values, sizePerFile, onChange }:
                                 color="gray"
                                 size="sm"
                                 radius="lg"
-                                style={{ position: "absolute", top: 10, right: 10 }}
+                                style={{
+                                    position: "absolute",
+                                    top: 10,
+                                    right: 10,
+                                }}
                             >
                                 <X size={13} fontWeight={600} />
                             </ActionIcon>
@@ -81,7 +107,7 @@ export function DropZone({ title, maxFiles = 1, values, sizePerFile, onChange }:
                     </CardContainer>
                 );
             }),
-        [files]
+        [files],
     );
 
     const handleDrop = (_files: FileWithPath[]) => {
@@ -93,7 +119,10 @@ export function DropZone({ title, maxFiles = 1, values, sizePerFile, onChange }:
             if (file.size <= sizePerFile ** 2) {
                 acceptedFiles.push(file);
             } else {
-                showErrorNotification("Each file should not exceed 1MB", "Invalid image");
+                showErrorNotification(
+                    "Each file should not exceed 1MB",
+                    "Invalid image",
+                );
             }
         });
 
@@ -117,7 +146,8 @@ export function DropZone({ title, maxFiles = 1, values, sizePerFile, onChange }:
                         {errors?.map((fileRejection, i) => (
                             <List.Item key={i}>
                                 <Text size="sm" c="red.9">
-                                    {fileRejection.file.name} - {fileRejection.errors[0]!.message}
+                                    {fileRejection.file.name} -{" "}
+                                    {fileRejection.errors[0]!.message}
                                 </Text>
                             </List.Item>
                         ))}
@@ -133,10 +163,18 @@ export function DropZone({ title, maxFiles = 1, values, sizePerFile, onChange }:
                             onReject={setErrors}
                             maxSize={MAX_SIZE}
                             maxFiles={maxFiles}
-                            accept={[MIME_TYPES.png, MIME_TYPES.jpeg, MIME_TYPES.webp]}
+                            accept={[
+                                MIME_TYPES.png,
+                                MIME_TYPES.jpeg,
+                                MIME_TYPES.webp,
+                            ]}
                             color="red"
                         >
-                            <Group justify="center" mih={150} style={{ pointerEvents: "none" }}>
+                            <Group
+                                justify="center"
+                                mih={150}
+                                style={{ pointerEvents: "none" }}
+                            >
                                 <DropzoneIdle>
                                     <Plus />
                                 </DropzoneIdle>

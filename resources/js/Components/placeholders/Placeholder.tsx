@@ -1,6 +1,15 @@
 "use client";
 
-import { Container, Center, Stack, Flex, Text, Title, Group, Button } from "@mantine/core";
+import {
+    Container,
+    Center,
+    Stack,
+    Flex,
+    Text,
+    Title,
+    Group,
+    Button,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { V } from "../../../types";
 import React from "react";

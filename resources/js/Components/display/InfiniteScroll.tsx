@@ -26,7 +26,11 @@ export function InfiniteScroll({
     };
 
     return (
-        <ScrollArea {...props} onScrollPositionChange={handleScrollChange} viewportRef={scrollRef}>
+        <ScrollArea
+            {...props}
+            onScrollPositionChange={handleScrollChange}
+            viewportRef={scrollRef}
+        >
             {children}
         </ScrollArea>
     );

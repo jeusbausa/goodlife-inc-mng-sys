@@ -21,7 +21,11 @@ export function SearchField({ onClear, ...props }: SearchFieldProps) {
                 ) : (
                     <CloseButton
                         onClick={onClear}
-                        style={{ display: !isEmpty(ref.current?.value) ? undefined : "none" }}
+                        style={{
+                            display: !isEmpty(ref.current?.value)
+                                ? undefined
+                                : "none",
+                        }}
                     />
                 )
             }

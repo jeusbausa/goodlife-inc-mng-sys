@@ -7,7 +7,11 @@ type LoadingStyledCardProps = {
     children: React.ReactNode;
 };
 
-export function LoadingStyledCard({ withTitle, withDescription, children }: LoadingStyledCardProps) {
+export function LoadingStyledCard({
+    withTitle,
+    withDescription,
+    children,
+}: LoadingStyledCardProps) {
     return (
         <Card withBorder shadow="sm" radius="md">
             {withTitle && (

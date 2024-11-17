@@ -12,8 +12,16 @@ export function CopyButton({ value, size = 17 }: CopyButtonProps) {
     return (
         <_CopyButton value={value} timeout={2000}>
             {({ copied, copy }) => (
-                <Tooltip label={copied ? "Copied" : "Copy"} withArrow position="right">
-                    <ActionIcon color={copied ? "teal" : "gray"} variant="subtle" onClick={copy}>
+                <Tooltip
+                    label={copied ? "Copied" : "Copy"}
+                    withArrow
+                    position="right"
+                >
+                    <ActionIcon
+                        color={copied ? "teal" : "gray"}
+                        variant="subtle"
+                        onClick={copy}
+                    >
                         {copied ? <Check size={size} /> : <Copy size={size} />}
                     </ActionIcon>
                 </Tooltip>

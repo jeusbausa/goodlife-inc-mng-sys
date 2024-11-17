@@ -11,7 +11,9 @@ export default function Footer() {
                 <Link className="text-gray-700">Privacy Policy</Link>
             </Section>
             <Section>
-                <Text className="text-xs text-gray-400">©{currentYear} JVoucher Inc・ All rights reserved.</Text>
+                <Text className="text-xs text-gray-400">
+                    ©{currentYear} JVoucher Inc・ All rights reserved.
+                </Text>
             </Section>
         </Container>
     );

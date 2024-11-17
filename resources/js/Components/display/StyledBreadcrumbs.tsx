@@ -12,7 +12,12 @@ type StyledBreadcrumbsProps = {
     children?: React.ReactNode;
 };
 
-export function StyledBreadcrumbs({ title, subtitle, crumbs, children }: StyledBreadcrumbsProps) {
+export function StyledBreadcrumbs({
+    title,
+    subtitle,
+    crumbs,
+    children,
+}: StyledBreadcrumbsProps) {
     return (
         <Stack mb="sm">
             <Breadcrumbs separator="/">

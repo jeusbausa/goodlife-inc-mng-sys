@@ -6,14 +6,18 @@ import CompleteProfileDetails from "./profile/CompleteProfileDetails";
 type CompleteProfileModalProps = {
     error: string;
     countryServerAction: (
-        allowedCountriesOnly: boolean
-    ) => Promise<Array<{ id: number; alpha2: string; name: string; alpha3: string }>>;
+        allowedCountriesOnly: boolean,
+    ) => Promise<
+        Array<{ id: number; alpha2: string; name: string; alpha3: string }>
+    >;
 };
 
-export const completeProfileModal = async ({ error }: CompleteProfileModalProps) => {
+export const completeProfileModal = async ({
+    error,
+}: CompleteProfileModalProps) => {
     const _error = await rescue(
         () => JSON.parse(error),
-        () => null
+        () => null,
     );
 
     if (!isNull(_error)) {

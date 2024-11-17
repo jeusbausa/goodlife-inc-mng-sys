@@ -18,7 +18,11 @@ export function PageHeading({
             component={Container}
             shadow="xs"
             radius={0}
-            styles={{ root: { borderBottom: "1px solid var(--app-shell-border-color)" } }}
+            styles={{
+                root: {
+                    borderBottom: "1px solid var(--app-shell-border-color)",
+                },
+            }}
         >
             <Container fluid={fluid} size="xl">
                 <Box py="xl">

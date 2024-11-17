@@ -6,7 +6,11 @@ type LoadingHeaderProps = {
     withTabs?: boolean;
 };
 
-export function LoadingHeader({ withDescription, withBackButton, withTabs }: LoadingHeaderProps) {
+export function LoadingHeader({
+    withDescription,
+    withBackButton,
+    withTabs,
+}: LoadingHeaderProps) {
     return (
         <Stack gap="sm" mb="lg">
             {withBackButton && <Skeleton h="lg" maw={200} />}

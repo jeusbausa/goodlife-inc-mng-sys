@@ -1,6 +1,15 @@
 "use client";
 
-import { Popover, PopoverTarget, Button, PopoverDropdown, Box, PopoverProps, Flex, Stack } from "@mantine/core";
+import {
+    Popover,
+    PopoverTarget,
+    Button,
+    PopoverDropdown,
+    Box,
+    PopoverProps,
+    Flex,
+    Stack,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Funnel } from "@phosphor-icons/react";
 
@@ -40,7 +49,11 @@ export function TableFilterPopoverButton({
             transitionProps={{ duration: 50, transition: "pop-top-left" }}
         >
             <PopoverTarget>
-                <Button variant="outline" onClick={toggle} leftSection={<Funnel size={18} />}>
+                <Button
+                    variant="outline"
+                    onClick={toggle}
+                    leftSection={<Funnel size={18} />}
+                >
                     Filters
                 </Button>
             </PopoverTarget>
@@ -49,7 +62,11 @@ export function TableFilterPopoverButton({
                     <Stack w={350}>
                         {children}
                         <Flex gap="sm" justify="space-between" align="center">
-                            <Button onClick={handleReset} fullWidth variant="outline">
+                            <Button
+                                onClick={handleReset}
+                                fullWidth
+                                variant="outline"
+                            >
                                 {resetLabel}
                             </Button>
                             <Button onClick={handleSubmit} fullWidth>

@@ -8,11 +8,15 @@ type DownloadButtonProps = {
     filters?: URLSearchParams;
 };
 
-export function DownloadButton({ table, filters, name = "download" }: DownloadButtonProps) {
+export function DownloadButton({
+    table,
+    filters,
+    name = "download",
+}: DownloadButtonProps) {
     const handleClick = async () => {
         const endpoint = new URL(
             `api/export/${camelCase(table)}?${filters?.toString() ?? ""}`,
-            process.env.NEXT_PUBLIC_APP_URL
+            process.env.NEXT_PUBLIC_APP_URL,
         );
         const response = await fetch(endpoint);
         const blob = await response.blob();
@@ -29,7 +33,11 @@ export function DownloadButton({ table, filters, name = "download" }: DownloadBu
     };
 
     return (
-        <Button autoContrast onClick={handleClick} leftSection={<Download size={18} />}>
+        <Button
+            autoContrast
+            onClick={handleClick}
+            leftSection={<Download size={18} />}
+        >
             Download
         </Button>
     );

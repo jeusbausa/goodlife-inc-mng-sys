@@ -8,7 +8,10 @@ type MainButtonProps = {
 export default function MainButton({ title, href }: MainButtonProps) {
     return (
         <Section className="my-20">
-            <Button className="bg-brand text-white rounded-md py-2 px-[14px]" href={href}>
+            <Button
+                className="bg-brand text-white rounded-md py-2 px-[14px]"
+                href={href}
+            >
                 {title}
             </Button>
         </Section>

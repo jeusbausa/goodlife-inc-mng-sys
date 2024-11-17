@@ -2,7 +2,11 @@
 
 import { getPermissions } from "../../../utils/server/common";
 import { toWords } from "@package/helpers/common";
-import { type ComboboxData, MultiSelect, type MultiSelectProps } from "@package/ui/mantine";
+import {
+    type ComboboxData,
+    MultiSelect,
+    type MultiSelectProps,
+} from "@package/ui/mantine";
 import { useEffect, useState } from "react";
 
 export function PermissionSelect({ ...props }: MultiSelectProps) {
@@ -10,7 +14,12 @@ export function PermissionSelect({ ...props }: MultiSelectProps) {
 
     useEffect(() => {
         void (async () => {
-            setPermissions((await getPermissions()).map(({ name, id }) => ({ label: toWords(name), value: `${id}` })));
+            setPermissions(
+                (await getPermissions()).map(({ name, id }) => ({
+                    label: toWords(name),
+                    value: `${id}`,
+                })),
+            );
         })();
     }, []);
 

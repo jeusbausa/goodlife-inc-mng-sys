@@ -14,7 +14,12 @@ export default function BodyContainer({ children }: BodyContainerProps) {
                 theme: {
                     extend: {
                         colors: { brand: "#2cb883" },
-                        spacing: { 0: "0px", 10: "10px", 20: "20px", 45: "45px" },
+                        spacing: {
+                            0: "0px",
+                            10: "10px",
+                            20: "20px",
+                            45: "45px",
+                        },
                     },
                 },
             }}

@@ -1,7 +1,11 @@
 "use client";
 
 import { getRoles } from "../../../utils/server/common";
-import { type ComboboxData, Select, type SelectProps } from "@package/ui/mantine";
+import {
+    type ComboboxData,
+    Select,
+    type SelectProps,
+} from "@package/ui/mantine";
 import { useEffect, useState } from "react";
 
 export function RoleSelect({ ...props }: SelectProps) {
@@ -9,7 +13,12 @@ export function RoleSelect({ ...props }: SelectProps) {
 
     useEffect(() => {
         void (async () => {
-            setRoles((await getRoles()).map(({ id, name }) => ({ label: name, value: `${id}` })));
+            setRoles(
+                (await getRoles()).map(({ id, name }) => ({
+                    label: name,
+                    value: `${id}`,
+                })),
+            );
         })();
     }, []);
 

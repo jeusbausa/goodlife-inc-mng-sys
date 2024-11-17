@@ -2,7 +2,13 @@
 
 import { getCountries } from "../../../utils/server/common";
 import { isEqual } from "lodash";
-import { type ComboboxData, MultiSelect, type MultiSelectProps, Select, type SelectProps } from "@mantine/core";
+import {
+    type ComboboxData,
+    MultiSelect,
+    type MultiSelectProps,
+    Select,
+    type SelectProps,
+} from "@mantine/core";
 import { useEffect, useState } from "react";
 
 type CountrySelectProps = (SelectProps | MultiSelectProps) & {
@@ -22,10 +28,14 @@ export function CountrySelect({
     useEffect(() => {
         void (async () => {
             setCountries(
-                (await getCountries(allowedCountriesOnly)).map(({ name, id, alpha2 }) => ({
-                    label: name,
-                    value: isEqual(fieldAsValue, "alpha2") ? alpha2.toUpperCase() : id.toString(),
-                }))
+                (await getCountries(allowedCountriesOnly)).map(
+                    ({ name, id, alpha2 }) => ({
+                        label: name,
+                        value: isEqual(fieldAsValue, "alpha2")
+                            ? alpha2.toUpperCase()
+                            : id.toString(),
+                    }),
+                ),
             );
         })();
     }, [fieldAsValue, allowedCountriesOnly]);

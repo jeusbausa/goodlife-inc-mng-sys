@@ -1,4 +1,10 @@
-import { Card, CardSection, CardSectionProps, Group, Text } from "@mantine/core";
+import {
+    Card,
+    CardSection,
+    CardSectionProps,
+    Group,
+    Text,
+} from "@mantine/core";
 import React from "react";
 
 type StyledCardProps = CardSectionProps & {

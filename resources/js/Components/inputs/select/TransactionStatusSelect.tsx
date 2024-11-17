@@ -8,7 +8,9 @@ export function TransactionStatusSelect({ ...props }: SelectProps) {
             {...props}
             checkIconPosition="right"
             data={Object.keys(TransactionStatuses)
-                .filter((status) => !isEqual(status, TransactionStatuses.PENDING))
+                .filter(
+                    (status) => !isEqual(status, TransactionStatuses.PENDING),
+                )
                 .map((c) => ({
                     label: c.toString().toUpperCase(),
                     value: c,

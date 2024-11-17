@@ -19,7 +19,12 @@ type LoadingTableProps = {
     withCheckbox?: boolean;
 };
 
-export function LoadingTable({ columns = 7, rows = 8, withCreateButton, withCheckbox = false }: LoadingTableProps) {
+export function LoadingTable({
+    columns = 7,
+    rows = 8,
+    withCreateButton,
+    withCheckbox = false,
+}: LoadingTableProps) {
     return (
         <Card withBorder>
             <Flex align="center" justify="space-between" mb="md">
@@ -43,7 +48,10 @@ export function LoadingTable({ columns = 7, rows = 8, withCreateButton, withChec
                             )}
                             {[...new Array(columns)].map((index) => (
                                 <TableTh key={index}>
-                                    <Skeleton h="lg" w={{ base: "100%", lg: "60%" }} />
+                                    <Skeleton
+                                        h="lg"
+                                        w={{ base: "100%", lg: "60%" }}
+                                    />
                                 </TableTh>
                             ))}
                         </TableTr>
@@ -58,7 +66,10 @@ export function LoadingTable({ columns = 7, rows = 8, withCreateButton, withChec
                                 )}
                                 {[...new Array(columns)].map((index) => (
                                     <TableTd key={index}>
-                                        <Skeleton h="lg" w={{ base: "100%", lg: "60%" }} />
+                                        <Skeleton
+                                            h="lg"
+                                            w={{ base: "100%", lg: "60%" }}
+                                        />
                                     </TableTd>
                                 ))}
                             </TableTr>
