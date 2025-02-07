@@ -15,12 +15,12 @@ if (!function_exists("convertDimensionKeyToCamel")) {
 
         if (!empty($parameters)) {
             foreach ($parameters as $key => $value) {
-                logger([$key, json_encode($value)]);
                 $new_payload[Str::camel($key)] = is_array($value)
                     ? convertDimensionKeyToCamel($value)
                     : $value;
             }
         }
+
         return $new_payload;
     }
 }

@@ -10,11 +10,8 @@ return new class extends Migration
     {
         Schema::create("transactions", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("client_id")->constrained("clients");
-            $table->string("transaction_number")->unique();
-            $table->string("settlement_type");
+            $table->foreignId("cluster_detail_id")->constrained("cluster_details");
             $table->string("type");
-            $table->string("status");
             $table->timestamps();
         });
     }

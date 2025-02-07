@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
+use Illuminate\Http\JsonResponse;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(Client::orderBy("created_at", "DESC")->paginate());
     }
 
     /**
@@ -29,7 +30,16 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        //
+        Client::create([
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "address_line_1" => $request->address_line_1,
+            "address_line_2" => $request->address_line_2,
+            "birthday" => $request->birthday,
+            "phone" => $request->phone,
+        ]);
+
+        return response()->json();
     }
 
     /**

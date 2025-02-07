@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Illuminate\Support\Str;
@@ -32,7 +33,7 @@ class HandleInertiaRequests extends Middleware
     {
         $props = convertDimensionKeyToCamel(array_merge(parent::share($request), [
             "auth" => [
-                "user" => $request->user(),
+                "user" => $request->user()->toArray(),
             ],
             "app_url" => config("app.url"),
         ]));

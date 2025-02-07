@@ -11,7 +11,7 @@ class StoreClusterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreClusterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "staff_id" => "required|integer|exists:staffs,id",
+            "branch_id" => "required|integer|exists:branches,id",
+            "cluster_code" => "required|string|max:255",
+            "date_of_release" => "required|date",
+            "date_of_first_payment" => "required|date",
+            "date_of_last_payment" => "required|date",
+            "loan_term" => "required|integer|in:18,24",
         ];
     }
 }

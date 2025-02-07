@@ -5,6 +5,7 @@ import { rem } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import { V } from "@/Components/types";
 import React from "react";
+import moment from "moment";
 
 export function populateValidationErrors<F>(
     form: UseFormReturnType<F, (values: F) => F>,
@@ -90,4 +91,13 @@ export function showErrorNotification(
         withCloseButton: false,
         ...options,
     });
+}
+
+export function getDateOfLastPayment(
+    loanTerm: number | string,
+    dateOfFirstOfPayment: Date,
+) {
+    return dateOfFirstOfPayment
+        ? moment(dateOfFirstOfPayment).add(loanTerm, "weeks").toDate()
+        : undefined;
 }

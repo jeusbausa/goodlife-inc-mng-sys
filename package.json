@@ -8,7 +8,7 @@
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
-        "@inertiajs/react": "^1.0.0",
+        "@inertiajs/react": "^2.0.0",
         "@mantinex/mantine-logo": "^1.0.1",
         "@types/lodash": "^4.17.13",
         "@types/node": "^18.13.0",
@@ -37,7 +37,6 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "@inertiajs/react": "^1.2.0",
         "@mantine/carousel": "^7.14.0",
         "@mantine/charts": "^7.14.0",
         "@mantine/code-highlight": "^7.14.0",
@@ -63,10 +62,13 @@
         "embla-carousel-react": "^7.1.0",
         "javascript-time-ago": "^2.5.11",
         "lodash": "^4.17.21",
+        "mantine-form-zod-resolver": "^1.1.0",
+        "moment": "^2.30.1",
         "react": "^18.3.1",
         "react-time-ago": "^7.3.3",
         "recharts": "^2.13.3",
         "swr": "^2.2.5",
-        "ziggy-js": "^2.4.0"
+        "ziggy-js": "^2.4.0",
+        "zod": "^3.23.8"
     }
 }

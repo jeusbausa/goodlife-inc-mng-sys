@@ -1,3 +1,4 @@
+import { SWRConfiguration } from "swr";
 export interface User {
     id: number;
     name: string;
@@ -11,4 +12,11 @@ export type PageProps<
     auth: {
         user: User;
     };
+};
+
+export type SWRHooksProps<F = unknown, Q = unknown> = {
+    filters?: F;
+    query?: Q;
+    headers?: Record<string, string>;
+    config?: Omit<SWRConfiguration, "fetcher">;
 };

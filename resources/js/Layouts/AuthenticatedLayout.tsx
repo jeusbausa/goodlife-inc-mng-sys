@@ -18,6 +18,7 @@ import {
     IconUsers,
     IconCross,
     IconUserCheck,
+    IconUsersGroup,
 } from "@tabler/icons-react";
 import { isEqual } from "lodash";
 
@@ -49,7 +50,7 @@ export default function Authenticated({
                     <Image
                         w={35}
                         src={
-                            "https://scontent.fmnl33-1.fna.fbcdn.net/v/t39.30808-6/308775200_427083756190584_4910632801039326913_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=CpfXlRSLaR8Q7kNvgExMeuD&_nc_zt=23&_nc_ht=scontent.fmnl33-1.fna&_nc_gid=Avo_YKXqqBn7EajaOee1X8m&oh=00_AYCEgiR7DNKjzCd3WLXMPuHkfqkg4yppDgEDQ3ocJ_loBQ&oe=673E1E44"
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPPgyCj8pBV9LVeupAPxEv7eEU5qMcJWQaNA&s"
                         }
                     />
                     <Text>GMIMS</Text>
@@ -58,39 +59,46 @@ export default function Authenticated({
             <AppShell.Navbar p="md">
                 <NavLink
                     component={Link}
-                    href={route("dashboard.page")}
+                    href={route("admin.dashboard.page")}
                     label="Dashboard"
                     leftSection={<IconDashboard />}
                     active={isEqual(activeMenu, "")}
                 />
                 <NavLink
                     component={Link}
-                    href={route("branches.page")}
+                    href={route("admin.branches.page")}
                     label="Branches"
                     leftSection={<IconBuilding />}
                     active={isEqual(activeMenu, "branches")}
                 />
                 <NavLink
                     component={Link}
-                    href={"/clients"}
+                    href={route("admin.clients.page")}
                     label="Clients"
                     leftSection={<IconUsers />}
                     active={isEqual(activeMenu, "clients")}
                 />
                 <NavLink
                     component={Link}
-                    href={"/staffs"}
+                    href={route("admin.staffs.page")}
                     label="Staffs"
                     leftSection={<IconUserCheck />}
                     active={isEqual(activeMenu, "staffs")}
                 />
                 <NavLink
                     component={Link}
+                    href={route("admin.clusters.page")}
+                    label="Clusters"
+                    leftSection={<IconUsersGroup />}
+                    active={isEqual(activeMenu, "clusters")}
+                />
+                {/* <NavLink
+                    component={Link}
                     href={"/dead-accounts"}
                     label="Dead Account"
                     leftSection={<IconCross />}
                     active={isEqual(activeMenu, "dead-accounts")}
-                />
+                /> */}
             </AppShell.Navbar>
             <AppShell.Main>
                 <Container fluid>
