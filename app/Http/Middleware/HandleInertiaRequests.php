@@ -33,7 +33,7 @@ class HandleInertiaRequests extends Middleware
     {
         $props = convertDimensionKeyToCamel(array_merge(parent::share($request), [
             "auth" => [
-                "user" => $request->user()->toArray(),
+                "user" => $request->user()?->toArray(),
             ],
             "app_url" => config("app.url"),
         ]));
