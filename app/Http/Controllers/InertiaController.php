@@ -49,9 +49,9 @@ class InertiaController extends Controller
      */
     public function cluster(Request $request, Cluster $cluster): Response
     {
-        $cluster = new ClusterResource($cluster->load("staff"));
 
-        return $this->inertiaRenderPage("Admin/Cluster/Cluster", ["cluster" => $cluster->toArray($request)]);
+
+        return $this->inertiaRenderPage("Admin/Cluster/Cluster", ["cluster_id" => $cluster->id]);
     }
 
     /**

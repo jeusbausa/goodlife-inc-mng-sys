@@ -4,12 +4,14 @@ import "@mantine/notifications/styles.css";
 import "../css/app.css";
 import "./bootstrap";
 
+import React from "react";
 import { createInertiaApp } from "@inertiajs/react";
 import { MantineProvider } from "@mantine/core";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from "react-dom/client";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
+import AddClusterClient from "./Components/modals/AddClientCluster";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
@@ -26,7 +28,7 @@ createInertiaApp({
         root.render(
             <MantineProvider>
                 <Notifications />
-                <ModalsProvider>
+                <ModalsProvider modals={{ addClientCluster: AddClusterClient }}>
                     <App {...props} />
                 </ModalsProvider>
             </MantineProvider>,

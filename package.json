@@ -7,6 +7,8 @@
         "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix"
     },
     "devDependencies": {
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "^9.20.0",
         "@headlessui/react": "^2.0.0",
         "@inertiajs/react": "^2.0.0",
         "@mantinex/mantine-logo": "^1.0.1",
@@ -14,17 +16,13 @@
         "@types/node": "^18.13.0",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.10",
-        "@typescript-eslint/eslint-plugin": "^7.16.0",
-        "@typescript-eslint/parser": "^7.16.0",
         "@vitejs/plugin-react": "^4.2.0",
         "autoprefixer": "^10.4.12",
         "axios": "^1.7.4",
         "concurrently": "^9.0.1",
-        "eslint": "^8.57.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.1.3",
-        "eslint-plugin-react": "^7.34.4",
-        "eslint-plugin-react-hooks": "^4.6.2",
+        "eslint": "^9.20.0",
+        "eslint-plugin-react": "^7.37.4",
+        "globals": "^15.14.0",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "postcss-preset-mantine": "^1.17.0",
@@ -34,6 +32,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "typescript": "^5.0.2",
+        "typescript-eslint": "^8.24.0",
         "vite": "^5.0"
     },
     "dependencies": {

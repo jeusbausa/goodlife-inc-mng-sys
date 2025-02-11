@@ -26,6 +26,10 @@ class ClusterResource extends JsonResource
             "status" => $this->status,
             "staff_assigned" => $this->staff->full_name,
             "branch_assigned" => $this->branch->name,
+            "members" => $this->when(
+                $this->members && $request->collect("with")->contains("members"),
+                ClientResource::collection($this->members)
+            ),
         ];
     }
 }

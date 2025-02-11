@@ -6,6 +6,7 @@ use App\Http\Enums\ClusterStatus;
 use App\Http\Enums\LoanTerm;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cluster extends Model
 {
@@ -36,5 +37,10 @@ class Cluster extends Model
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(ClusterDetail::class);
     }
 }

@@ -4,17 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\ClientResource;
 use App\Models\Client;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return response()->json(Client::orderBy("created_at", "DESC")->paginate());
+        $client = Client::orderBy("created_at", "DESC")
+            ->when($request->keyword, fn(Builder $query, $keyword) => $query
+                ->where("first_name", "LIKE", "%{$keyword}%")
+                ->orWhere("last_name", "LIKE", "%{$keyword}%"));
+
+        return ClientResource::collection($client->paginate());
     }
 
     /**

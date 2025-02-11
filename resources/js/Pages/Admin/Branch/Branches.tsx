@@ -25,6 +25,7 @@ import { z } from "zod";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ActionButton from "@/Components/tables/ActionButton";
 import useHttp from "@/hooks/useHttp";
+import StackContainer from "@/Layouts/StackContainer";
 
 type FormProps = z.infer<typeof branchSchema>;
 
@@ -59,74 +60,76 @@ export default function Branches() {
     };
 
     return (
-        <AuthenticatedLayout title="Branches">
-            <Modal
-                opened={opened}
-                onClose={close}
-                title="Add a new branch"
-                centered
-            >
-                <form onSubmit={handleSubmit}>
-                    <Grid columns={4}>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("name")}
-                                label="Branch name"
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                    </Grid>
-                    <Group justify="end" mt="xl">
-                        <Button type="submit" loading={store.submitting}>
-                            Create
-                        </Button>
-                    </Group>
-                </form>
-            </Modal>
+        <AuthenticatedLayout>
+            <StackContainer title="Branches">
+                <Modal
+                    opened={opened}
+                    onClose={close}
+                    title="Add a new branch"
+                    centered
+                >
+                    <form onSubmit={handleSubmit}>
+                        <Grid columns={4}>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("name")}
+                                    label="Branch name"
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                        </Grid>
+                        <Group justify="end" mt="xl">
+                            <Button type="submit" loading={store.submitting}>
+                                Create
+                            </Button>
+                        </Group>
+                    </form>
+                </Modal>
 
-            <Group align="center" justify="end" mb="sm">
-                <Button
-                    onClick={open}
-                    leftSection={<IconCirclePlus size={18} />}
-                >
-                    Add branch
-                </Button>
-            </Group>
-            {isLoading ? (
-                <LoadingOverlay
-                    visible={isLoading}
-                    loaderProps={{ children: "Loading branches..." }}
-                />
-            ) : (
-                <StyledTable
-                    page={page}
-                    total={branches.total}
-                    onPageChange={setPage}
-                >
-                    <TableThead>
-                        <TableTr>
-                            <TableTh>Name</TableTh>
-                        </TableTr>
-                    </TableThead>
-                    <TableTbody>
-                        {branches.data.map((branch, index) => (
-                            <TableTr key={`${branch.id}.${index}`}>
-                                <TableTd>{branch.name}</TableTd>
-                                <TableTd>
-                                    <ActionButton>
-                                        <MenuItem
-                                            component={Link}
-                                            href={route("admin.clients.page")}
-                                        >
-                                            View
-                                        </MenuItem>
-                                    </ActionButton>
-                                </TableTd>
+                <Group align="center" justify="end" mb="sm">
+                    <Button
+                        onClick={open}
+                        leftSection={<IconCirclePlus size={18} />}
+                    >
+                        Add branch
+                    </Button>
+                </Group>
+                {isLoading ? (
+                    <LoadingOverlay
+                        visible={isLoading}
+                        loaderProps={{ children: "Loading branches..." }}
+                    />
+                ) : (
+                    <StyledTable
+                        page={page}
+                        total={branches.total}
+                        onPageChange={setPage}
+                    >
+                        <TableThead>
+                            <TableTr>
+                                <TableTh>Name</TableTh>
                             </TableTr>
-                        ))}
-                    </TableTbody>
-                </StyledTable>
-            )}
+                        </TableThead>
+                        <TableTbody>
+                            {branches.data.map((branch, index) => (
+                                <TableTr key={`${branch.id}.${index}`}>
+                                    <TableTd>{branch.name}</TableTd>
+                                    <TableTd>
+                                        <ActionButton>
+                                            <MenuItem
+                                                component={Link}
+                                                href={route("admin.clients.page")}
+                                            >
+                                                View
+                                            </MenuItem>
+                                        </ActionButton>
+                                    </TableTd>
+                                </TableTr>
+                            ))}
+                        </TableTbody>
+                    </StyledTable>
+                )}
+            </StackContainer>
         </AuthenticatedLayout>
     );
 }

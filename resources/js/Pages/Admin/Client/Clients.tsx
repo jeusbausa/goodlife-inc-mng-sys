@@ -28,6 +28,7 @@ import { z } from "zod";
 import { clientSchema } from "@/schemas/client";
 import { useClients } from "@/hooks/swr/clients";
 import useHttp from "@/hooks/useHttp";
+import StackContainer from "@/Layouts/StackContainer";
 
 type FormProps = z.infer<typeof clientSchema>;
 
@@ -69,102 +70,104 @@ export default function Clients() {
     };
 
     return (
-        <AuthenticatedLayout title="Clients">
-            <Modal
-                opened={opened}
-                onClose={close}
-                title="Add a new client"
-                centered
-                size="xl"
-            >
-                <form onSubmit={handleSubmit}>
-                    <Grid>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("firstName")}
-                                label="First name"
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("middleName")}
-                                label="Middle name"
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("lastName")}
-                                label="Last name"
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                    </Grid>
-                    <Grid>
-                        <Grid.Col span={4}>
-                            <DateInput
-                                {...form.getInputProps("birthday")}
-                                label="Birthday"
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <NumberInput
-                                {...form.getInputProps("phone")}
-                                label="Contact no."
-                                allowDecimal={false}
-                                allowLeadingZeros={false}
-                                allowNegative={false}
-                                hideControls
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <Textarea
-                                {...form.getInputProps("addressLine1")}
-                                label="Address"
-                            />
-                        </Grid.Col>
-                    </Grid>
-                    <Group justify="end" mt="xl">
-                        <Button type="submit" loading={store.submitting}>
-                            Create
-                        </Button>
-                    </Group>
-                </form>
-            </Modal>
+        <AuthenticatedLayout>
+            <StackContainer title="Clients">
+                <Modal
+                    opened={opened}
+                    onClose={close}
+                    title="Add a new client"
+                    centered
+                    size="xl"
+                >
+                    <form onSubmit={handleSubmit}>
+                        <Grid>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("firstName")}
+                                    label="First name"
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("middleName")}
+                                    label="Middle name"
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("lastName")}
+                                    label="Last name"
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                        </Grid>
+                        <Grid>
+                            <Grid.Col span={4}>
+                                <DateInput
+                                    {...form.getInputProps("birthday")}
+                                    label="Birthday"
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <NumberInput
+                                    {...form.getInputProps("phone")}
+                                    label="Contact no."
+                                    allowDecimal={false}
+                                    allowLeadingZeros={false}
+                                    allowNegative={false}
+                                    hideControls
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <Textarea
+                                    {...form.getInputProps("addressLine1")}
+                                    label="Address"
+                                />
+                            </Grid.Col>
+                        </Grid>
+                        <Group justify="end" mt="xl">
+                            <Button type="submit" loading={store.submitting}>
+                                Create
+                            </Button>
+                        </Group>
+                    </form>
+                </Modal>
 
-            <Group align="center" justify="end" mb="sm">
-                <Button
-                    onClick={open}
-                    leftSection={<IconCirclePlus size={18} />}
-                >
-                    Add client
-                </Button>
-            </Group>
-            {isLoading ? (
-                <LoadingOverlay
-                    visible={isLoading}
-                    loaderProps={{ children: "Loading clients..." }}
-                />
-            ) : (
-                <StyledTable
-                    page={page}
-                    total={clients.total}
-                    onPageChange={setPage}
-                >
-                    <TableThead>
-                        <TableTr>
-                            <TableTh w={300}>Name</TableTh>
-                        </TableTr>
-                    </TableThead>
-                    <TableTbody>
-                        {clients.data.map((client, index) => (
-                            <TableTr key={`${client.id}.${index}`}>
-                                <TableTd>{client.fullName}</TableTd>
+                <Group align="center" justify="end" mb="sm">
+                    <Button
+                        onClick={open}
+                        leftSection={<IconCirclePlus size={18} />}
+                    >
+                        Add client
+                    </Button>
+                </Group>
+                {isLoading ? (
+                    <LoadingOverlay
+                        visible={isLoading}
+                        loaderProps={{ children: "Loading clients..." }}
+                    />
+                ) : (
+                    <StyledTable
+                        page={page}
+                        total={clients.total}
+                        onPageChange={setPage}
+                    >
+                        <TableThead>
+                            <TableTr>
+                                <TableTh w={300}>Name</TableTh>
                             </TableTr>
-                        ))}
-                    </TableTbody>
-                </StyledTable>
-            )}
+                        </TableThead>
+                        <TableTbody>
+                            {clients.data.map((client, index) => (
+                                <TableTr key={`${client.id}.${index}`}>
+                                    <TableTd>{client.fullName}</TableTd>
+                                </TableTr>
+                            ))}
+                        </TableTbody>
+                    </StyledTable>
+                )}
+            </StackContainer>
         </AuthenticatedLayout>
     );
 }

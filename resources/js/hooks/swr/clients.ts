@@ -4,7 +4,7 @@ import { SWRHooksProps } from "@/types";
 import axios from "axios";
 import useSWR from "swr";
 
-export function useClients(options?: SWRHooksProps<{ page: number }>) {
+export function useClients(options?: SWRHooksProps<{ keyword: string, }>) {
     const { config, filters } = options;
 
     return useSWR(

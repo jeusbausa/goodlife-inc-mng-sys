@@ -16,28 +16,30 @@ import {
     ComboboxEmpty,
     ScrollAreaAutosize,
 } from "@mantine/core";
-import { useBranches } from "@/hooks/swr/branches";
+import { useClients } from "@/hooks/swr/clients";
 
-type BranchInputProps = {
-    onSelectAction: (branchId: string) => void;
+type ClientInputProps = {
+    onSelectAction: (clientId: string) => void;
 } & ComboboxProps;
 
-export default function BranchSelect({
+export default function ClientSelect({
     onSelectAction,
     ...props
-}: BranchInputProps) {
+}: ClientInputProps) {
     const [keyword, setKeyword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const combobox = useCombobox({ scrollBehavior: "smooth" });
     const [value, setValue] = useState("");
-    const { data: branches } = useBranches({
+    const { data: clients } = useClients({
         filters: { keyword },
         config: {
             revalidateOnFocus: false,
             revalidateOnMount: false,
-
             fallbackData: [],
             onSuccess: () => {
+                if (isEmpty(clients.data)) {
+                    setValue("");
+                }
                 setIsLoading(false);
             },
         },
@@ -61,9 +63,9 @@ export default function BranchSelect({
         combobox.openDropdown();
     };
 
-    const options = branches?.data?.map((item) => (
+    const options = clients?.data?.map((item) => (
         <ComboboxOption value={item.id} key={item.id}>
-            {item.name}
+            {item.fullName}
         </ComboboxOption>
     ));
 
@@ -75,14 +77,13 @@ export default function BranchSelect({
                 onSelectAction(JSON.parse(value));
                 combobox.closeDropdown();
             }}
-            withinPortal={false}
             store={combobox}
         >
             <ComboboxTarget>
                 <TextInput
                     value={value}
-                    label="Branch"
-                    placeholder="Search branch"
+                    label="Client name"
+                    placeholder="Search client"
                     onChange={handleOnChange}
                     onClick={() => combobox.openDropdown()}
                     onBlur={() => combobox.closeDropdown()}
@@ -93,7 +94,7 @@ export default function BranchSelect({
             <ComboboxDropdown>
                 <ComboboxOptions>
                     <ScrollAreaAutosize mah={200} type="scroll">
-                        {!isEmpty(branches?.data) ? (
+                        {!isEmpty(clients?.data) ? (
                             options
                         ) : (
                             <ComboboxEmpty>No results found</ComboboxEmpty>

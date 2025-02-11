@@ -54,7 +54,7 @@ class ClusterController extends Controller
      */
     public function show(Cluster $cluster): ClusterResource
     {
-        return new ClusterResource($cluster);
+        return new ClusterResource($cluster->load("members"));
     }
 
     /**

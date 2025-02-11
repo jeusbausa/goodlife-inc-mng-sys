@@ -27,6 +27,7 @@ import { z } from "zod";
 import { staffSchema } from "@/schemas/staff";
 import { useStaffs } from "@/hooks/swr/staffs";
 import useHttp from "@/hooks/useHttp";
+import StackContainer from "@/Layouts/StackContainer";
 
 type FormProps = z.infer<typeof staffSchema>;
 
@@ -77,121 +78,123 @@ export default function Staffs() {
     };
 
     return (
-        <AuthenticatedLayout title="Staffs">
-            <Modal
-                opened={opened}
-                onClose={close}
-                title="Add a new staff"
-                centered
-                size="xl"
-            >
-                <form onSubmit={handleSubmit}>
-                    <Grid>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("firstName")}
-                                label="First name"
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("lastName")}
-                                label="Last name"
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("codeName")}
-                                label="Codename"
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                    </Grid>
-                    <Grid>
-                        <Grid.Col span={4}>
-                            <Select
-                                {...form.getInputProps("branchId")}
-                                label="Assign branch"
-                                multiple={false}
-                                placeholder="Select assign branch"
-                                data={branches.map((branch) => ({
-                                    label: branch.name,
-                                    value: branch.id.toString(),
-                                }))}
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <TextInput
-                                {...form.getInputProps("idNo")}
-                                label="ID No."
-                                withAsterisk
-                            />
-                        </Grid.Col>
-                        <Grid.Col span={4}>
-                            <NumberInput
-                                {...form.getInputProps("phone")}
-                                label="Contact no."
-                                allowDecimal={false}
-                                allowLeadingZeros={false}
-                                allowNegative={false}
-                                hideControls
-                            />
-                        </Grid.Col>
-                    </Grid>
-                    <Grid>
-                        <Grid.Col span={4}>
-                            <Textarea
-                                {...form.getInputProps("addressLine1")}
-                                label="Address"
-                            />
-                        </Grid.Col>
-                    </Grid>
-                    <Group justify="end" mt="xl">
-                        <Button type="submit" loading={store.submitting}>
-                            Create
-                        </Button>
-                    </Group>
-                </form>
-            </Modal>
+        <AuthenticatedLayout>
+            <StackContainer title="Staffs">
+                <Modal
+                    opened={opened}
+                    onClose={close}
+                    title="Add a new staff"
+                    centered
+                    size="xl"
+                >
+                    <form onSubmit={handleSubmit}>
+                        <Grid>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("firstName")}
+                                    label="First name"
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("lastName")}
+                                    label="Last name"
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("codeName")}
+                                    label="Codename"
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                        </Grid>
+                        <Grid>
+                            <Grid.Col span={4}>
+                                <Select
+                                    {...form.getInputProps("branchId")}
+                                    label="Assign branch"
+                                    multiple={false}
+                                    placeholder="Select assign branch"
+                                    data={branches.map((branch) => ({
+                                        label: branch.name,
+                                        value: branch.id.toString(),
+                                    }))}
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <TextInput
+                                    {...form.getInputProps("idNo")}
+                                    label="ID No."
+                                    withAsterisk
+                                />
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <NumberInput
+                                    {...form.getInputProps("phone")}
+                                    label="Contact no."
+                                    allowDecimal={false}
+                                    allowLeadingZeros={false}
+                                    allowNegative={false}
+                                    hideControls
+                                />
+                            </Grid.Col>
+                        </Grid>
+                        <Grid>
+                            <Grid.Col span={4}>
+                                <Textarea
+                                    {...form.getInputProps("addressLine1")}
+                                    label="Address"
+                                />
+                            </Grid.Col>
+                        </Grid>
+                        <Group justify="end" mt="xl">
+                            <Button type="submit" loading={store.submitting}>
+                                Create
+                            </Button>
+                        </Group>
+                    </form>
+                </Modal>
 
-            <Group align="center" justify="end" mb="sm">
-                <Button
-                    onClick={open}
-                    leftSection={<IconCirclePlus size={18} />}
-                >
-                    Add client
-                </Button>
-            </Group>
-            {isLoading ? (
-                <LoadingOverlay
-                    visible={isLoading}
-                    loaderProps={{ children: "Loading staffs..." }}
-                />
-            ) : (
-                <StyledTable
-                    page={page}
-                    total={staffs.total}
-                    onPageChange={(_page) => {
-                        setPage(_page);
-                    }}
-                >
-                    <TableThead>
-                        <TableTr>
-                            <TableTh w={300}>Name</TableTh>
-                        </TableTr>
-                    </TableThead>
-                    <TableTbody>
-                        {staffs.data.map((staff, index) => (
-                            <TableTr key={`${staff.id}.${index}`}>
-                                <TableTd>{staff.fullName}</TableTd>
+                <Group align="center" justify="end" mb="sm">
+                    <Button
+                        onClick={open}
+                        leftSection={<IconCirclePlus size={18} />}
+                    >
+                        Add client
+                    </Button>
+                </Group>
+                {isLoading ? (
+                    <LoadingOverlay
+                        visible={isLoading}
+                        loaderProps={{ children: "Loading staffs..." }}
+                    />
+                ) : (
+                    <StyledTable
+                        page={page}
+                        total={staffs.total}
+                        onPageChange={(_page) => {
+                            setPage(_page);
+                        }}
+                    >
+                        <TableThead>
+                            <TableTr>
+                                <TableTh w={300}>Name</TableTh>
                             </TableTr>
-                        ))}
-                    </TableTbody>
-                </StyledTable>
-            )}
+                        </TableThead>
+                        <TableTbody>
+                            {staffs.data.map((staff, index) => (
+                                <TableTr key={`${staff.id}.${index}`}>
+                                    <TableTd>{staff.fullName}</TableTd>
+                                </TableTr>
+                            ))}
+                        </TableTbody>
+                    </StyledTable>
+                )}
+            </StackContainer>
         </AuthenticatedLayout>
     );
 }

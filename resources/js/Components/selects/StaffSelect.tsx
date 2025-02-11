@@ -39,6 +39,7 @@ export default function StaffSelect({
         filters: { keyword, branchId },
         config: {
             revalidateOnFocus: false,
+            revalidateOnMount: false,
             fallbackData: [],
             onSuccess: () => {
                 if (isEmpty(staffs.data)) {
@@ -50,8 +51,13 @@ export default function StaffSelect({
     });
 
     const debounceSearch = useDebouncedCallback((value) => {
-        setKeyword(value);
+        if (value) {
+            setKeyword(value);
+            return;
+        }
+
         setIsLoading(false);
+        combobox.closeDropdown();
     }, 1000);
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {

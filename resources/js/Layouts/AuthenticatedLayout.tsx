@@ -24,8 +24,7 @@ import { isEqual } from "lodash";
 
 export default function Authenticated({
     children,
-    title,
-}: PropsWithChildren<{ title?: string }>) {
+}: PropsWithChildren) {
     const [opened, { toggle }] = useDisclosure();
     const [, activeMenu] = usePage().url.split("/");
 
@@ -102,9 +101,6 @@ export default function Authenticated({
             </AppShell.Navbar>
             <AppShell.Main>
                 <Container fluid>
-                    <Head title={title} />
-                    <Text fw="bold">{title}</Text>
-                    <Divider size="xs" my="md" variant="solid" />
                     {children}
                 </Container>
             </AppShell.Main>
